@@ -5,7 +5,12 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon --exec ts-node src/app.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:unit": "jest --testPathPattern='^((?!e2e).)*$'",
+    "test:e2e": "jest --testPathPattern='^.*\\.e2e\\.test\\.(ts|js)$'"
   },
   "keywords": [],
   "author": "",
