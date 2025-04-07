@@ -1,11 +1,11 @@
-function addCategory(){
-    const categoryName = document.getElementById('category-name').value;
-    fetch('./itemcategories', {
+function createRecipeHandler(){
+    const title = document.getElementById('recipe-title').value;
+    fetch('./recipes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: categoryName })
+        body: JSON.stringify({ title })
     })
     .then(response => response.json())
     .then(data => {
@@ -16,4 +16,9 @@ function addCategory(){
     });
 }
 
-document.getElementById('create-category').addEventListener('click', addCategory);
+
+document.getElementById('create-recipe').addEventListener('click', createRecipeHandler);
+
+const init = () => {
+
+}
