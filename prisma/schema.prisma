@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ItemCategory {
+  id        Int     @id @default(autoincrement()) @map("category_id")
+  name      String  @map("category_name")
+  items     Item[]
+
+  @@map("item_categories")
+}
+
+model Item {
+  id                Int           @id @default(autoincrement()) @map("item_id")
+  categoryId        Int           @map("category_id")
+  name              String        @map("item_name")
+  category          ItemCategory  @relation(fields: [categoryId], references: [id])
+  inventory         Inventory?
+  recipeIngredients RecipeIngredient[]
+
+  @@map("items")
+}
+
+model Unit {
+  id                Int                @id @default(autoincrement()) @map("unit_id")
+  name              String             @map("unit_name")
+  inventories       Inventory[]
+  recipeIngredients RecipeIngredient[]
+
+  @@map("units")
+}
+
+model Inventory {
+  itemId    Int     @id @map("item_id")
+  quantity  Float
+  unitId    Int     @map("unit_id")
+  item      Item    @relation(fields: [itemId], references: [id])
+  unit      Unit    @relation(fields: [unitId], references: [id])
+
+  @@map("inventory")
+}
+
+model Recipe {
+  id          Int                @id @default(autoincrement()) @map("recipe_id")
+  name        String             @map("recipe_name")
+  ingredients RecipeIngredient[]
+  steps       RecipeStep[]
+
+  @@map("recipes")
+}
+
+model RecipeIngredient {
+  recipeId  Int     @map("recipe_id")
+  itemId    Int     @map("item_id")
+  quantity  Float
+  unitId    Int     @map("unit_id")
+  recipe    Recipe  @relation(fields: [recipeId], references: [id])
+  item      Item    @relation(fields: [itemId], references: [id])
+  unit      Unit    @relation(fields: [unitId], references: [id])
+
+  @@id([recipeId, itemId])
+  @@map("recipe_ingredients")
+}
+
+model RecipeStep {
+  id        Int     @id @default(autoincrement()) @map("step_id")
+  recipeId  Int     @map("recipe_id")
+  text      String  @map("step_text")
+  recipe    Recipe  @relation(fields: [recipeId], references: [id])
+
+  @@map("recipe_steps")
+}
