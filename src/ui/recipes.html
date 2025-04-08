@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miomon Kitchen</title>
+    <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Miomon Kitchen</h1>
+        </header>
+        
+        <main>
+            <section class="recipe-form">
+                <h2>新しいレシピを追加</h2>
+                <form id="recipe-form">
+                    <div class="form-group">
+                        <label for="recipe-title">レシピ名</label>
+                        <input type="text" id="recipe-title" name="title" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button type="button" id="cancel-edit" class="btn" style="display: none;">キャンセル</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="recipe-list">
+                <h2>レシピ一覧</h2>
+                <div id="recipes-container">
+                    <p id="loading-message">読み込み中...</p>
+                    <p id="no-recipes" style="display: none;">レシピがありません。新しいレシピを追加してください。</p>
+                    <ul id="recipe-list"></ul>
+                </div>
+            </section>
+
+            <section class="recipe-detail" id="recipe-detail" style="display: none;">
+                <h2>レシピ詳細</h2>
+                <div class="detail-content">
+                    <h3 id="detail-title"></h3>
+                    <div class="detail-actions">
+                        <button id="edit-recipe" class="btn">レシピ名編集</button>
+                        <button id="delete-recipe" class="btn btn-danger">削除</button>
+                        <button id="view-instructions" class="btn btn-secondary">手順を見る</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <h3>確認</h3>
+                <p id="confirmation-message"></p>
+                <div class="modal-actions">
+                    <button id="confirm-yes" class="btn btn-danger">はい</button>
+                    <button id="confirm-no" class="btn">いいえ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="recipe.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* レシピ手順管理ページ用のスタイル */
+
+.nav-actions {
+    margin-top: 15px;
+}
+
+#recipe-title {
+    color: #3498db;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* 手順フォームのスタイル */
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+input[type="number"] {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 手順リストのスタイル */
+.instruction-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: flex-start;
+}
+
+.step-number {
+    background-color: #3498db;
+    color: white;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.instruction-content {
+    flex-grow: 1;
+}
+
+.instruction-description {
+    margin-bottom: 10px;
+}
+
+.instruction-actions {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .instruction-item {
+        flex-direction: column;
+    }
+
+    .step-number {
+        margin-bottom: 10px;
+    }
+
+    .instruction-actions {
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
+}

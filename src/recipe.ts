@@ -17,10 +17,7 @@ const client = new DynamoDBClient({ region: REGION });
 const docClient = DynamoDBDocumentClient.from(client);
 
 // インターフェース定義
-interface Base {
-    kind: string;
-    id: string;
-}
+import { Base } from './base';
 
 interface Recipe extends Base {
     title: string;
